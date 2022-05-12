@@ -41,7 +41,7 @@ data:
         - needs-rebase
         repos:
         - virtualclusterit-net/gsm
-      target_url: http://lighthouse-jx./merge/status
+      target_url: http://lighthouse-jx.34.135.194.111.nip.io/merge/status
 kind: ConfigMap
 metadata:
   creationTimestamp: null
