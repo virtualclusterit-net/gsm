@@ -5,28 +5,46 @@ spec:
     enabled: false
     schedule: ""
   cluster:
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+    clusterName: tf-jx-outgoing-bunny
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
     gitKind: github
     gitName: github
     gitServer: https://github.com
+    gke:
+      projectNumber: "578537085453"
     kanikoFlags: --skip-unused-stages --snapshotMode=redo
+    project: devops-2k22
     provider: gke
     registry: gcr.io
+    zone: us-central1-a
   environments:
   - key: dev
+    owner: virtualclusterit-net
+    repository: gsm
   - key: staging
   - key: production
   ingress:
-    domain: ""
-    externalDNS: false
+    domain: 34.135.194.111.nip.io
+    kind: ingress
     namespaceSubDomain: -jx.
     tls:
       email: ""
       enabled: false
-      production: false
+      production: true
+  kuberhealthy: true
+  pipelineUser:
+    username: manuh-l
   repository: nexus
   secretStorage: gsm
+  storage:
+  - name: logs
+    url: gs://logs-tf-jx-outgoing-bunny-856de1d2aab8
+  - name: reports
+    url: gs://reports-tf-jx-outgoing-bunny-856de1d2aab8
+  - name: repository
+    url: gs://repository-tf-jx-outgoing-bunny-856de1d2aab8
   vault: {}
   webhook: lighthouse

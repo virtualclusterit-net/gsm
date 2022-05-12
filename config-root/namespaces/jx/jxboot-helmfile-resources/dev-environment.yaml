@@ -1,0 +1,41 @@
+# Source: jxboot-helmfile-resources/templates/environments.yaml
+apiVersion: jenkins.io/v1
+kind: Environment
+metadata:
+  labels:
+    env: "dev"
+    team: jx
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: "dev"
+  annotations:
+    meta.helm.sh/release-name: 'jxboot-helmfile-resources'
+  namespace: jx
+spec:
+  source:
+    ref: "master"
+    url: https://github.com/virtualclusterit-net/gsm.git
+  kind: Development
+  label: Development
+  namespace: jx
+  promotionStrategy: "Never"
+  webHookEngine: "Lighthouse"
+  teamSettings:
+    appsRepository: https://jenkins-x-charts.github.io/repo
+    defaultScheduler:
+      apiVersion: jenkins.io/v1
+      kind: Scheduler
+      name: jx-meta-pipeline
+    dockerRegistryOrg: ""
+    envOrganisation: todo
+    gitServer: https://github.com
+    kubeProvider: "gke"
+    pipelineUsername: "manuh-l"
+    pipelineUserEmail: "jenkins-x@googlegroups.com"
+    prowConfig: Scheduler
+    storageLocations:
+      - bucketUrl: "gs://logs-tf-jx-outgoing-bunny-856de1d2aab8"
+        classifier: "logs"
+      - bucketUrl: "gs://reports-tf-jx-outgoing-bunny-856de1d2aab8"
+        classifier: "reports"
+      - bucketUrl: "gs://repository-tf-jx-outgoing-bunny-856de1d2aab8"
+        classifier: "repository"
